@@ -1,0 +1,26 @@
+{
+  "name": "Snewse",
+  "version": "0.5",
+  "manifest_version": 2,
+  "content_scripts" : [
+    {
+  //  "matches" ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "description": "stop wasting your time! >:cc",
+  //"icons": {
+  //  "size": "imageName.png"
+  //},
+  //background scripts?
+  //content scripts?
+  //icon at the END (unless we can convince vicky to make one for us ;))
+  "page_action": {
+    "default_title": "snewse",
+    "default_popup": "popup.html"
+  },
+
+  "permissions": [
+    "*://*.reddit.com/*"
+  ]
+}
