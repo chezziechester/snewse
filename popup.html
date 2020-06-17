@@ -2,9 +2,27 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>snewse</title>
+    <title>snewze</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=IBM+Plex+Mono&family=Poppins&display=swap" rel="stylesheet">
   </head>
   <body>
-    <p>You have read (XX) articles</p>
+    <div class="intro">
+      <img src="images/snewse.png" alt="logo" style="width:40px;height:40px;">
+      <span>snewze</span>
+    </div>
+    <div class="articleCounter">
+      <p>you have read<br>
+      <span style="color: #E3E8EA; font-size: 80pt; background-color: #70797E; line-height: normal;"> XX </span></br>
+      articles today
+      </p>
+    </div>
+    <button class="button" onclick=" setLimit() ">set limit</button>
+    <footer style = 'text-align: center; font-size: 10pt'>©2020 snewzers</footer>
+    <script>
+      function setLimit() {
+        var articleLimit = prompt("How many articles would you like to read today?");
+      }
+    </script>
   </body>
 </html>
