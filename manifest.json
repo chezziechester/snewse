@@ -6,12 +6,14 @@
     "scripts": ["background.js"],
     "persistent": false
   },
-  //"content_scripts" : [
-  //  {
-  //  "matches" ["<all_urls>"],
-  //    "js": ["content.js"]
-  //  }
-  //],
+
+  "content_scripts" : [
+    {
+    "matches": ["*://www.theskimm.com/*"],
+    "js": ["content.js"]
+    }
+  ],
+
   "description": "stop wasting your time! >:cc",
   "icons": {
     //Icon made by Freepik from Flaticon
