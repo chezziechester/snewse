@@ -13,20 +13,23 @@
     </div>
     <div class="articleCounter">
       <p>you have read<br>
-      <span style="color: #E3E8EA; font-size: 80pt; background-color: #70797E; line-height: normal;"> XX </span></br>
-      articles today
+      <span id="counter" style="color: #E3E8EA; font-size: 60pt; background-color: #70797E; line-height: normal;">XX</span>
+      <span id="outOf" style="color: #E3E8EA; font-size: 60pt; background-color: #70797E; line-height: normal;">/</span>
+      <span id="max" style="color: #E3E8EA; font-size: 60pt; background-color: #70797E; line-height: normal;">XX</span>
+      </br>articles today
       </p>
     </div>
     <div class="timer">
-      <p id="timerText" style="text-align: center">00h 00m 00s</p>
+      <p id="timerText">00h 00m 00s</p>
     </div>
-    <button class="button" onclick=" setLimit() ">set limit</button>
-    <footer style = 'text-align: center; font-size: 10pt'>©2020 snewzers</footer>
-    <script>
-      function setLimit() {
-        var articleLimit = prompt("How many articles would you like to read today?");
-      }
+    <div class="bt" style="display:inline-block">
+      <button class="button" onclick="play()">set limit</button>
+      <button class="button" onclick="play()">see limit</button>
+    </div>
+    <script src="popup.js" charset="utf-8"></script>
+    <script type="text/javascript" src="content.js">
+
     </script>
-    <script type="text/javascript" src="content.js"></script>
+    <!-- <footer style = 'text-align: center; font-size: 10pt'>©2020 snewzers</footer> -->
   </body>
 </html>
