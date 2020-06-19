@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function onclick () {
     const limit = prompt("How many articles are you reading today?");
-    if (limit < 10) {
+    if (limit < 10 && !null) {
       document.getElementById("max").innerHTML = "0" + limit;
-    } else if (limit >= 10) {
+    } else if (limit >= 10 && !null) {
         document.getElementById("max").innerHTML = limit;
     }
 
