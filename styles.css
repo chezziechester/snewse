@@ -1,8 +1,8 @@
 body {
   background-color: #495054;
   color: #E3E8EA;
-  width: 300px;
-  height: 400px;
+  width: 400px;
+  height: 350px;
   font-family: 'Poppins', sans-serif;
   font-size: 13pt;
 }
@@ -15,7 +15,6 @@ body {
 .articleCounter {
   text-align: center;
   font-family: 'IBM Plex Mono', monospace;
-  padding: 5px;
   line-height: 1.75;
 }
 img:hover {
@@ -36,6 +35,10 @@ img:hover {
   100% { transform: translate(0.5px, -1px) rotate(-1deg); }
 }
 
+.timer {
+  text-align: center;
+}
+
 .button {
   background-color: #70797E;
   border: none;
@@ -54,3 +57,11 @@ img:hover {
 }
 
 .button:hover {opacity: 0.6}
+
+.bt {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translate(-50%);
+}
