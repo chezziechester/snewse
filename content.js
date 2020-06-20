@@ -5,9 +5,9 @@
 var start
 //used as reference to calculate the other values
 var tmpSeconds
-var seconds
-var minutes
-var hours
+var seconds = 0
+var minutes = 0
+var hours = 0
 
 var defaultValue = Date.now()
 chrome.storage.sync.get({startTime: defaultValue}, function(data) {
