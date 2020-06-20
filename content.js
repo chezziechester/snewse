@@ -3,14 +3,16 @@
 
 //"starting time" for when the user first visited a news website
 var start
+//to compare to today's date so it can refresh the time
+var date
+var tmpDate = new Date()
 //used as reference to calculate the other values
 var tmpSeconds
 var seconds = 0
 var minutes = 0
 var hours = 0
 
-var defaultValue = Date.now()
-chrome.storage.sync.get({startTime: defaultValue}, function(data) {
+chrome.storage.sync.get({startTime: Date.now()}, function(data) {
   //if data.startTime is set, then it will use that value
   //otherwise, it will use the default value
   chrome.storage.sync.set({startTime: data.startTime}, function() {
@@ -18,8 +20,17 @@ chrome.storage.sync.get({startTime: defaultValue}, function(data) {
   });
 });
 
+chrome.storage.sync.get({date: tmpDate.getDate()}, function(data) {
+  //same concept as above
+  chrome.storage.sync.set({date: data.date}, function() {
+    date = data.date
+  });
+});
+
 //updates every second
 setInterval(function() {
+  //needs to update every second as to check for new date...
+  tmpDate = new Date()
   //gets the difference in milliseconds from the starting time
   //then converts to seconds
   //only temporary because i need it for the other values
@@ -36,5 +47,23 @@ setInterval(function() {
     hours = Math.floor((tmpSeconds / 60) / 60)
   }
 
-  document.getElementById("timerText").innerHTML = `${hours}h ${minutes}m ${seconds}s`
+  if (date != tmpDate.getDate()) {
+    chrome.storage.sync.set({date: tmpDate.getDate()}, function() {
+      date = tmpDate.getDate()
+    })
+    //resets everything
+    chrome.storage.sync.set({startTime: Date.now()}, function() {
+      start = Date.now()
+      hours = 0
+      minutes = 0
+      seconds = 0
+    })
+  }
+
+  //for aesthetics ;)
+  let doubleDigitSeconds = (seconds > 9) ? `${seconds}` : `0${seconds}`
+  let doubleDigitMinutes = (minutes > 9) ? `${minutes}` : `0${minutes}`
+  let doubleDigitHours = (hours > 9) ? `${hours}` : `0${hours}`
+
+  document.getElementById("timerText").innerHTML = `${doubleDigitHours}h ${doubleDigitMinutes}m ${doubleDigitSeconds}s`
 }, 1000)
