@@ -7,10 +7,10 @@
     "persistent": false
   },
 
-  "content_scripts" : [
+  "content_scripts": [
     {
-    "matches": ["*://www.theskimm.com/*"],
-    "js": ["content.js"]
+    "matches": ["*://*.theskimm.com/*"],
+    "js": ["theskimm.js", "content.js"]
     }
   ],
 
@@ -27,8 +27,10 @@
     }
   },
   "permissions": [
+    "activeTab",
+    "tabs",
     "storage",
     "declarativeContent",
-    "*://*.reddit.com/*"
+    "*://*.theskimm.com/*"
   ]
 }

@@ -16,3 +16,15 @@ chrome.runtime.onInstalled.addListener(function() {
   ]);
   });
 });
+
+//communicate between background and content script because apparently
+//you can't use the tabs api nor the storage api in the content script
+//fml
+
+chrome.runtime.onMessage.addListener(
+  function(message, sender, sendResponse) {
+    if (message === "article visited") {
+      sendResponse(sender.url)
+      return true
+    }
+})
