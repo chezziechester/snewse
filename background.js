@@ -9,20 +9,48 @@ chrome.runtime.onInstalled.addListener(function() {
     },
     {
       conditions: [new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {hostEquals: "www.news.yahoo.com"}
+      })],
+      actions: [new chrome.declarativeContent.ShowPageAction()]
+    },
+    {
+      conditions: [new chrome.declarativeContent.PageStateMatcher({
         pageUrl: {hostEquals: "www.theskimm.com"}
+      })],
+      actions: [new chrome.declarativeContent.ShowPageAction()]
+    },
+    {
+      conditions: [new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {hostEquals: "www.nytimes.com"}
+      })],
+      actions: [new chrome.declarativeContent.ShowPageAction()]
+    },
+    {
+      conditions: [new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {hostEquals: "www.foxnews.com"}
+      })],
+      actions: [new chrome.declarativeContent.ShowPageAction()]
+    },
+    {
+      conditions: [new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {hostEquals: "www.nbcnews.com"}
+      })],
+      actions: [new chrome.declarativeContent.ShowPageAction()]
+    },
+    {
+      conditions: [new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {hostEquals: "www.theguardian.com"}
       })],
       actions: [new chrome.declarativeContent.ShowPageAction()]
     }
   ])
   })
-  chrome.storage.sync.set({limit: null})
 })
 
 function limitReached(ID) {
   var limit
   chrome.storage.sync.get(['limit'], function(data) {
     limit = data.limit
-    console.log(limit)
     chrome.storage.sync.get(['articles'], function(data) {
       var array = data.articles
       if (limit === null) {
@@ -79,6 +107,11 @@ chrome.runtime.onMessage.addListener(
     }
   }
 )
+
+//sets null for time limit if the value hasn't already been set
+chrome.storage.sync.get({limit: null}, function(data) {
+  chrome.storage.sync.set({limit: data.limit})
+}
 
 
 // chrome.tabs.onUpdate.addListener(function(tabId, changeInfo, tab) {

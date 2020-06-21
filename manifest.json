@@ -9,8 +9,24 @@
 
   "content_scripts": [
     {
-    "matches": ["*://*.theskimm.com/*"],
-    "js": ["theskimm.js", "content.js"]
+      "matches": ["*://*.theskimm.com/*"],
+      "js": ["websites/theskimm.js"]
+    },
+    {
+      "matches": ["*://*.cnn.com/*/index.html", "*://*.news.yahoo.com/*.html", "*://*.nytimes.com/*.html"],
+      "js": ["websites/generic.js"]
+    },
+    {
+      "matches": ["*://*.foxnews.com/*"],
+      "js": ["websites/foxnews.js"]
+    },
+    {
+      "matches": ["*://*.nbcnews.com/*"],
+      "js": ["websites/nbc.js"]
+    },
+    {
+      "matches": ["*://*.theguardian.com/*"],
+      "js": ["websites/guardian.js"]
     }
   ],
 
@@ -30,7 +46,6 @@
     "activeTab",
     "tabs",
     "storage",
-    "declarativeContent",
-    "*://*.theskimm.com/*"
+    "declarativeContent"
   ]
 }
