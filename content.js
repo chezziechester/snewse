@@ -3,6 +3,7 @@
 //so that it doesn't fire E V E R Y T I M E you open the news website
 //and only while reading the article
 //doesn't work for some reason, if you remove the listener it works
+
 // chrome.runtime.onMessage.addListener(
 //   function(message, sender, sendResponse) {
     console.log("please please plase")
@@ -72,7 +73,8 @@
       let doubleDigitMinutes = (minutes > 9) ? `${minutes}` : `0${minutes}`
       let doubleDigitHours = (hours > 9) ? `${hours}` : `0${hours}`
 
-      chrome.runtime.sendMessage({seconds: doubleDigitSeconds, minutes: doubleDigitMinutes, hours: doubleDigitHours})
+      document.getElementById("timerText").innerHTML = `${doubleDigitHours}h ${doubleDigitMinutes}m ${doubleDigitSeconds}s`
+      //chrome.runtime.sendMessage({seconds: doubleDigitSeconds, minutes: doubleDigitMinutes, hours: doubleDigitHours})
 
     }, 1000)
 //   }
