@@ -44,7 +44,7 @@ img:hover {
   border: none;
   border-radius: 4px;
   color: #E3E8EA;
-  padding: 8px 15px;
+  padding: 8px 10px;
   text-align: center;
   font-size: 15px;
   font-family: 'Fira Sans', sans-serif;
@@ -61,7 +61,7 @@ img:hover {
 .bt {
   margin: 0;
   position: absolute;
-  left: 50%;
-  -ms-transform: translateX(-50%);
-  transform: translate(-50%);
+  left: 40%;
+  -ms-transform: translateX(-33%);
+  transform: translate(-33%);
 }

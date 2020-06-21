@@ -3,9 +3,9 @@
 //so that it doesn't fire E V E R Y T I M E you open the news website
 //and only while reading the article
 //doesn't work for some reason, if you remove the listener it works
+
 // chrome.runtime.onMessage.addListener(
 //   function(message, sender, sendResponse) {
-    console.log("please please plase")
     //TIMER FUNCTIONALITY
 
     //"starting time" for when the user first visited a news website
@@ -24,6 +24,17 @@
       //otherwise, it will use the default value
       chrome.storage.sync.set({startTime: data.startTime}, function() {
         start = data.startTime
+        //a copy of the below code; mostly just so it WORKS WHEN THE LIMIT IS REACHED
+        tmpSeconds = Math.round((Date.now() - start) / 1000)
+        seconds = tmpSeconds % 60
+        if (((tmpSeconds / 60) % 60) >= 1) {
+          minutes = Math.floor((tmpSeconds / 60) % 60)}
+        if (((tmpSeconds / 60) / 60) >= 1 ) {
+          hours = Math.floor((tmpSeconds / 60) / 60)}
+        let doubleDigitSeconds = (seconds > 9) ? `${seconds}` : `0${seconds}`
+        let doubleDigitMinutes = (minutes > 9) ? `${minutes}` : `0${minutes}`
+        let doubleDigitHours = (hours > 9) ? `${hours}` : `0${hours}`
+        document.getElementById("timerText").innerHTML = `${doubleDigitHours}h ${doubleDigitMinutes}m ${doubleDigitSeconds}s`
       });
     });
 
@@ -64,6 +75,8 @@
           hours = 0
           minutes = 0
           seconds = 0
+          chrome.storage.sync.set({limitReached: false})
+          chrome.storage.sync.set({limit: null})
         })
       }
 
@@ -72,7 +85,13 @@
       let doubleDigitMinutes = (minutes > 9) ? `${minutes}` : `0${minutes}`
       let doubleDigitHours = (hours > 9) ? `${hours}` : `0${hours}`
 
-      chrome.runtime.sendMessage({seconds: doubleDigitSeconds, minutes: doubleDigitMinutes, hours: doubleDigitHours})
+      chrome.storage.sync.get(['limitReached'], function(data) {
+        var limitReached = data.limitReached
+        if (!limitReached) {
+          document.getElementById("timerText").innerHTML = `${doubleDigitHours}h ${doubleDigitMinutes}m ${doubleDigitSeconds}s`
+        }
+      })
+      //chrome.runtime.sendMessage({seconds: doubleDigitSeconds, minutes: doubleDigitMinutes, hours: doubleDigitHours})
 
     }, 1000)
 //   }
