@@ -39,6 +39,18 @@ chrome.runtime.onInstalled.addListener(function() {
     },
     {
       conditions: [new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {hostEquals: "www.bbc.uk"}
+      })],
+      actions: [new chrome.declarativeContent.ShowPageAction()]
+    },
+    {
+      conditions: [new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {hostEquals: "www.wsj.com"}
+      })],
+      actions: [new chrome.declarativeContent.ShowPageAction()]
+    },
+    {
+      conditions: [new chrome.declarativeContent.PageStateMatcher({
         pageUrl: {hostEquals: "www.theguardian.com"}
       })],
       actions: [new chrome.declarativeContent.ShowPageAction()]

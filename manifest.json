@@ -27,6 +27,14 @@
     {
       "matches": ["*://*.theguardian.com/*"],
       "js": ["websites/guardian.js"]
+    },
+    {
+      "matches": ["*://*.wsj.com/*"],
+      "js": ["websites/wsj.js"]
+    },
+    {
+      "matches": ["*://*.bbc.com/*"],
+      "js": ["websites/bbc.js"]
     }
   ],
 
