@@ -61,7 +61,7 @@ img:hover {
 .bt {
   margin: 0;
   position: absolute;
-  left: 40%;
-  -ms-transform: translateX(-33%);
-  transform: translate(-33%);
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translate(-50%);
 }

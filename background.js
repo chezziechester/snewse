@@ -22,22 +22,17 @@ function limitReached(ID) {
   var limit
   chrome.storage.sync.get(['limit'], function(data) {
     limit = data.limit
-  })
-  chrome.storage.sync.get(['articles'], function(data) {
-    var array = data.articles
-    if (array.length >= limit) {
-      chrome.storage.sync.set({limitReached: true})
-      alert("Yikes! You've gotten over your limit!")
-      chrome.tabs.remove(ID)
-      //doesn't work for some reason
-      // let font = "@font-face {font-family: 'Galactico'; src: url('Galactico-Basic.otf')} * {font-family: 'Galactico'}"
-      // let stylesheet = document.createElement("style")
-      // stylesheet.type = "text/css"
-      // stylesheet.innerText = font
-      // document.querySelector("head").appendChild(stylesheet)
-    } else if (limit === null) {
-      alert("Set a limit!")
-    }
+    console.log(limit)
+    chrome.storage.sync.get(['articles'], function(data) {
+      var array = data.articles
+      if (limit === null) {
+        alert("Set a limit!")
+      } else if (articles.length > limit) {
+        chrome.storage.sync.set({limitReached: true})
+        alert("Yikes! You've gotten over your limit!")
+        chrome.tabs.remove(ID)
+      }
+    })
   })
 }
 
@@ -80,13 +75,15 @@ chrome.runtime.onMessage.addListener(
   function(message, sender, sendResponse) {
     if (message === "close this tab") {
       alert("No more reading articles for the day.")
-      // chrome.tabs.remove(sender.tab.id)
+      chrome.tabs.remove(sender.tab.id)
     }
   }
 )
 
-// chrome.tabs.onUpdate.addListener(function() {
-//   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//     chrome.runtime.sendMessage(tabs[0].id)
+
+// chrome.tabs.onUpdate.addListener(function(tabId, changeInfo, tab) {
+//     console.log("It WORKED!")
+//     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//       chrome.runtime.sendMessage(tabs[0].id, "yo")
+//     })
 //   })
-// })

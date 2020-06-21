@@ -34,7 +34,7 @@
         let doubleDigitSeconds = (seconds > 9) ? `${seconds}` : `0${seconds}`
         let doubleDigitMinutes = (minutes > 9) ? `${minutes}` : `0${minutes}`
         let doubleDigitHours = (hours > 9) ? `${hours}` : `0${hours}`
-        document.getElementById("timerText").innerHTML = `${doubleDigitHours}h ${doubleDigitMinutes}m ${doubleDigitSeconds}s`
+        document.getElementById("timerText").innerHTML = `time spent: ${doubleDigitHours}h ${doubleDigitMinutes}m ${doubleDigitSeconds}s`
       });
     });
 
@@ -88,7 +88,7 @@
       chrome.storage.sync.get(['limitReached'], function(data) {
         var limitReached = data.limitReached
         if (!limitReached) {
-          document.getElementById("timerText").innerHTML = `${doubleDigitHours}h ${doubleDigitMinutes}m ${doubleDigitSeconds}s`
+          document.getElementById("timerText").innerHTML = `time spent: ${doubleDigitHours}h ${doubleDigitMinutes}m ${doubleDigitSeconds}s`
         }
       })
       //chrome.runtime.sendMessage({seconds: doubleDigitSeconds, minutes: doubleDigitMinutes, hours: doubleDigitHours})
